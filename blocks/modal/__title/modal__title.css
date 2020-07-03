@@ -1,0 +1,8 @@
+.modal__title {
+  align-self: flex-start;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1.2;
+  margin-top: 0;
+  margin-bottom: 54px;
+}

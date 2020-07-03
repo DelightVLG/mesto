@@ -1,0 +1,22 @@
+.modal__close-btm {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  right: -40px;
+  top: -40px;
+  cursor: pointer;
+  background-image: url('../../../images/close-icn.svg');
+  background-position: center;
+}
+
+.modal__close-btm:hover {
+  opacity: .6;
+}
+
+@media screen and (max-width: 530px){
+  .modal__close-btm {
+    right: 0;
+    top: 0;
+    background-image: url('../../../images/close-icn-blck.svg');
+  }
+}

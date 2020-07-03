@@ -5,7 +5,19 @@
 @import url('../blocks/profile/profile.css');
 @import url('../blocks/elements/elements.css');
 @import url('../blocks/footer/footer.css');
+@import url('../blocks/modal/modal.css');
+@import url('../blocks/modal/_is-open/modal_is-open.css');
 
 /*div, h1, p, section {
   outline: 1px solid red;
 }*/
+
+
+
+
+
+
+
+
+
+
