@@ -8,6 +8,7 @@
   width: 21px;
   background-color: #fff;
   transition: 0.3s;
+  padding: 0;
 }
 
 .elements__like-btn:hover {
