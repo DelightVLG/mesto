@@ -1,4 +1,4 @@
-.modal__close-btm {
+.modal__close-btn {
   width: 40px;
   height: 40px;
   position: absolute;
@@ -9,12 +9,12 @@
   background-position: center;
 }
 
-.modal__close-btm:hover {
+.modal__close-btn:hover {
   opacity: .6;
 }
 
 @media screen and (max-width: 530px){
-  .modal__close-btm {
+  .modal__close-btn {
     right: 0;
     top: 0;
     background-image: url('../../../images/close-icn-blck.svg');

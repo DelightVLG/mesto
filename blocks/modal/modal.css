@@ -3,7 +3,7 @@
 @import url('./__form/modal__form.css');
 @import url('./__input-txt/modal__input-txt.css');
 @import url('./__sbmt-btn/modal__sbmt-btn.css');
-@import url('./__close-btm/modal__close-btn.css');
+@import url('__close-btn/modal__close-btn.css');
 
 .modal {
   display: none;

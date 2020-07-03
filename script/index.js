@@ -1,6 +1,6 @@
 const openModalBtn = document.querySelector('.profile__edit-btn');
 const modal = document.querySelector('.modal');
-const closeModalBtn = document.querySelector('.modal__close-btm');
+const closeModalBtn = document.querySelector('.modal__close-btn');
 
 const modalForm = modal.querySelector('.modal__form');
 const modalFormSbmt = modalForm.querySelector('.modal__sbmt-btn');
