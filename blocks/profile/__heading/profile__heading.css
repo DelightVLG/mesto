@@ -1,0 +1,11 @@
+.profile__heading {
+  display: flex;
+  align-self: end;
+  position: relative;
+}
+
+@media screen and (max-width: 596px) {
+  .profile__heading {
+    justify-content: center;
+  }
+}

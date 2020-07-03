@@ -1,0 +1,17 @@
+.profile__info {
+  display: grid;
+  grid-template-areas:
+  "avatar profile-heading"
+  "avatar profile-about";
+  grid-gap: 14px;
+}
+
+@media screen and (max-width: 760px) {
+  .profile__info {
+    grid-template-areas:
+    "avatar"
+    "profile-heading"
+    "profile-about";
+    justify-content: center;
+  }
+}

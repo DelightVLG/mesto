@@ -5,12 +5,79 @@
 	<meta name="viewport"
 	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="./vendor/normalize.css">
+	<link rel="stylesheet" href="./pages/index.css">
 	<title>Project Mesto</title>
 </head>
-<body class="root">
-<div class="container">
-	<header class="header"></header>
+<body class="page">
+<div class="page__container">
+	<header class="header page__header">
+		<div class="header__logo"></div>
+	</header>
+
+	<main class="page__main">
+		<section class="profile page__profile">
+			<div class="profile__info">
+				<img class="profile__photo" src="./images/profile-photo.jpg" alt="Фотография профиля">
+				<div class="profile__heading">
+				<h1 class="profile__title">Сергей Компаниец</h1>
+				<button class="profile__edit-btn"></button>
+				</div>
+				<p class="profile__subtitle">Начинающий фронтенд разработчик</p>
+			</div>
+			<button class="profile__add-btn"></button>
+		</section>
+
+		<section class="page__elements">
+			<ul class="elements">
+				<li class="elements__element">
+					<img src="./images/bali.jpg" alt=" Остров Бали" class="elements__img">
+					<div class="elements__footer">
+						<h2 class="elements__title">Бали</h2>
+						<button class="elements__like-btn"></button>
+					</div>
+				</li>
+				<li class="elements__element">
+					<img src="./images/rome.jpg" alt="Рим. Колизей" class="elements__img">
+					<div class="elements__footer">
+						<h2 class="elements__title">Рим</h2>
+						<button class="elements__like-btn"></button>
+					</div>
+				</li>
+				<li class="elements__element">
+					<img src="./images/swis.jpg" alt="Швейцария. Горы" class="elements__img">
+					<div class="elements__footer">
+						<h2 class="elements__title">Швейцария</h2>
+						<button class="elements__like-btn"></button>
+					</div>
+				</li>
+				<li class="elements__element">
+					<img src="./images/cologne.jpg" alt="Кёльн. Домский собор" class="elements__img">
+					<div class="elements__footer">
+						<h2 class="elements__title">Кёльн</h2>
+						<button class="elements__like-btn"></button>
+					</div>
+				</li>
+				<li class="elements__element">
+					<img src="./images/tallinn.jpg" alt="Таллин. Старый город" class="elements__img">
+					<div class="elements__footer">
+						<h2 class="elements__title">Таллин</h2>
+						<button class="elements__like-btn"></button>
+					</div>
+				</li>
+				<li class="elements__element">
+					<img src="./images/vatican.jpg" alt="Ватикан. Собор Святого Павла" class="elements__img">
+					<div class="elements__footer">
+						<h2 class="elements__title">Ватикан</h2>
+						<button class="elements__like-btn"></button>
+					</div>
+				</li>
+			</ul>
+		</section>
+	</main>
+
+	<footer class="footer">
+		<p class="footer__copyright">© 2020 Mesto Russia. Сергей Компаниец</p>
+	</footer>
 </div>
 
 

@@ -1,0 +1,7 @@
+.elements__img {
+  object-fit: cover;
+  display: block;
+  width: 282px;
+  height: 282px;
+  border-radius: 5px 5px 0 0;
+}

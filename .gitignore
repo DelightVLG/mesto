@@ -4,3 +4,6 @@
 /workspace.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+/package.json
+/package-lock.json
+/node_modules/

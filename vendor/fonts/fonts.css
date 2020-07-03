@@ -10,11 +10,12 @@
 @font-face {
   font-family: 'Inter';
   font-style:  normal;
-  font-weight: 700;
+  font-weight: 500;
   font-display: swap;
-  src: url("./inter-700.woff2") format("woff2"),
-       url("./inter-700.woff") format("woff");
+  src: url("./inter-500.woff2") format("woff2"),
+       url("./inter-500.woff") format("woff");
 }
+
 @font-face {
   font-family: 'Inter';
   font-style:  normal;
@@ -23,8 +24,3 @@
   src: url("./inter-900.woff2") format("woff2"),
        url("./inter-900.woff") format("woff");
 }
-
-/*
-  Студент может опционально сам выбирать необходимую директорию и названий папок для шрифтов.
-  Мы им только рекомендуем собирать все в вендор.
-*/

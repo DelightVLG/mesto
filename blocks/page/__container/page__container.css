@@ -1,0 +1,10 @@
+.page__container {
+  max-width: 882px;
+  min-width: 282px;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 45px 0 60px;
+}
