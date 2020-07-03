@@ -1,4 +1,5 @@
 .elements__like-btn {
+  display: inline-block;
   border: none;
   cursor: pointer;
   background-image: url('../../../images/like.svg');

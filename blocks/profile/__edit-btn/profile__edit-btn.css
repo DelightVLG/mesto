@@ -1,4 +1,5 @@
 .profile__edit-btn {
+  display: inline-block;
   position: absolute;
   right: -41px;
   top: 20px;
