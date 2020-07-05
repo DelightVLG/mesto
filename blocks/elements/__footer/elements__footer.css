@@ -4,7 +4,7 @@
   align-items: center;
   background-color: #fff;
   border-radius: 0 0 5px 5px;
-  height: 79px;
+  min-height: 79px;
   padding-left: 20px;
   padding-right: 15px;
   box-sizing: border-box;
