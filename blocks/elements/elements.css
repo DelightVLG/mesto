@@ -1,9 +1,3 @@
-@import url('./__element/elements__element.css');
-@import url('./__img/elements__img.css');
-@import url('./__footer/elements__footer.css');
-@import url('./__title/elements__title.css');
-@import url('./__like-btn/elements__like-btn.css');
-
 .elements {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(282px, 282px));

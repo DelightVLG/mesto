@@ -1,14 +1,6 @@
-@import url('./__container/modal__container.css');
-@import url('./__title/modal__title.css');
-@import url('./__form/modal__form.css');
-@import url('./__input-txt/modal__input-txt.css');
-@import url('./__sbmt-btn/modal__sbmt-btn.css');
-@import url('__close-btn/modal__close-btn.css');
-
 .modal {
   display: none;
-  justify-content: center;
-  align-items: center;
+  place-items: center;
   position: fixed;
   left: 0;
   top: 0;
