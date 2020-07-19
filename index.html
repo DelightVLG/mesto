@@ -29,48 +29,6 @@
 
 		<section class="page__elements">
 			<ul class="elements">
-				<li class="elements__element">
-					<img src="./images/bali.jpg" alt="Остров Бали" class="elements__img">
-					<div class="elements__footer">
-						<h2 class="elements__title">Бали</h2>
-						<button class="elements__like-btn"></button>
-					</div>
-				</li>
-				<li class="elements__element">
-					<img src="./images/rome.jpg" alt="Рим. Колизей" class="elements__img">
-					<div class="elements__footer">
-						<h2 class="elements__title">Рим</h2>
-						<button class="elements__like-btn"></button>
-					</div>
-				</li>
-				<li class="elements__element">
-					<img src="./images/swis.jpg" alt="Швейцария. Горы" class="elements__img">
-					<div class="elements__footer">
-						<h2 class="elements__title">Швейцария</h2>
-						<button class="elements__like-btn"></button>
-					</div>
-				</li>
-				<li class="elements__element">
-					<img src="./images/cologne.jpg" alt="Кёльн. Домский собор" class="elements__img">
-					<div class="elements__footer">
-						<h2 class="elements__title">Кёльн</h2>
-						<button class="elements__like-btn"></button>
-					</div>
-				</li>
-				<li class="elements__element">
-					<img src="./images/tallinn.jpg" alt="Таллин. Старый город" class="elements__img">
-					<div class="elements__footer">
-						<h2 class="elements__title">Таллин</h2>
-						<button class="elements__like-btn"></button>
-					</div>
-				</li>
-				<li class="elements__element">
-					<img src="./images/vatican.jpg" alt="Ватикан. Собор Святого Павла" class="elements__img">
-					<div class="elements__footer">
-						<h2 class="elements__title">Ватикан</h2>
-						<button class="elements__like-btn"></button>
-					</div>
-				</li>
 			</ul>
 		</section>
 	</main>
@@ -80,7 +38,7 @@
 	</footer>
 </div>
 
-<div class="modal">
+<div class="modal modal_type_edit-profile">
 	<div class="modal__container">
 		<span class="modal__close-btn"></span>
 		<h2 class="modal__title">Редактировать профиль</h2>
@@ -91,6 +49,39 @@
 		</form>
 		</div>
 </div>
+
+<div class="modal modal_type_add-place">
+	<div class="modal__container">
+		<span class="modal__close-btn"></span>
+		<h2 class="modal__title">Новое место</h2>
+		<form class="modal__form" action="#" method="POST">
+			<input type="text" class="modal__input-txt modal__input-txt_type_place-name"
+			       value="" name="place-name" placeholder="Название">
+			<input type="text" class="modal__input-txt modal__input-txt_type_img-url"
+			       value="" name="place-url" placeholder="Ссылка на картинку">
+			<input type="submit" class="modal__sbmt-btn" value="Сохранить" name="save">
+		</form>
+	</div>
+</div>
+
+<section class="modal modal_type_preview">
+	<div class="modal__preview-container">
+		<span class="modal__close-btn modal__close-btn_type_preview"></span>
+		<img class="modal__preview-img" src="" alt="">
+		<p class="modal__preview-subtitle"></p>
+	</div>
+</section>
+
+<template class="cards-template">
+	<li class="elements__element">
+		<img src="" alt="" class="elements__img">
+		<div class="elements__footer">
+			<h2 class="elements__title"></h2>
+			<button class="elements__like-btn"></button>
+			<button class="elements__del-btn"></button>
+		</div>
+	</li>
+</template>
 
 <script src="script/index.js"></script>
 </body>
