@@ -1,5 +1,8 @@
 .modal {
-  display: none;
+  display: grid;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility .3s, opacity .3s linear;
   place-items: center;
   position: fixed;
   left: 0;

@@ -56,12 +56,12 @@ const previewSubtitle = previewModal.querySelector('.modal__preview-subtitle');
 const previewClsBtn = previewModal.querySelector('.modal__close-btn_type_preview');
 
 // Функция открытия/закрытия модалок
-const toggleModal = (modal) => {
-  if (!modal.classList.contains('modal_is-open')) {
+const toggleModal = (modalType) => {
+  if (!editProfModal.classList.contains('modal_is-open')) {
     modalFormName.value = profileName.textContent;
     modalFormJob.value = profileSubtitle.textContent;
   }
-  modal.classList.toggle('modal_is-open');
+  modalType.classList.toggle('modal_is-open');
 };
 
 // Обработчик кнопки лайка
@@ -79,10 +79,10 @@ function cardDelete(elem) {
 }
 
 // Обработчик превью картинки карточки
-function cardImgPreview(elem, src, caption = '') {
+function cardImgPreview(elem, src, subtitle = '') {
   elem.querySelector('.elements__img').addEventListener('click', () => {
     previewImage.src = src;
-    previewSubtitle.textContent = caption;
+    previewSubtitle.textContent = subtitle;
     toggleModal(previewModal);
   });
 }
