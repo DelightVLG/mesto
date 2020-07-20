@@ -1,13 +1,13 @@
 .modal {
-  display: grid;
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility .3s, opacity .3s linear;
-  place-items: center;
   position: fixed;
+  display: grid;
+  place-items: center;
+  visibility: hidden;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+  transition: visibility .3s, opacity .3s linear;
+  opacity: 0;
 }
