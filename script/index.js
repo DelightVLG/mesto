@@ -57,11 +57,15 @@ const previewClsBtn = previewModal.querySelector('.modal__close-btn_type_preview
 
 // Функция открытия/закрытия модалок
 const toggleModal = (modalType) => {
+  modalType.classList.toggle('modal_is-open');
+};
+//  Функция открытия модалки ред.профиля
+const toggleEditProfModal = () => {
   if (!editProfModal.classList.contains('modal_is-open')) {
     modalFormName.value = profileName.textContent;
     modalFormJob.value = profileSubtitle.textContent;
   }
-  modalType.classList.toggle('modal_is-open');
+  toggleModal(editProfModal);
 };
 
 // Обработчик кнопки лайка
@@ -115,7 +119,7 @@ initialCards.forEach((elem) => {
   addElement(cardsContainer, cardElement);
 });
 
-// Функция обработчика сабмита на форму редактрования профиля
+// Функция обработчика сабмита на форме редактрования профиля
 const editProfFormSubmitHandler = (evt) => {
   evt.preventDefault();
 
@@ -128,7 +132,7 @@ const editProfFormSubmitHandler = (evt) => {
   toggleModal(editProfModal);
 };
 
-// Функция обработчика сабмита на форму добавления карточки
+// Функция обработчика сабмита на форме добавления карточки
 const addPlaceSubmitHandler = (evt) => {
   evt.preventDefault();
 
@@ -143,7 +147,7 @@ const addPlaceSubmitHandler = (evt) => {
 };
 
 // Лисенеры на форму редактирования профиля
-editProfOpenBtn.addEventListener('click', () => toggleModal(editProfModal));
+editProfOpenBtn.addEventListener('click', () => toggleEditProfModal());
 editProfClsBtn.addEventListener('click', () => toggleModal(editProfModal));
 editProfModalForm.addEventListener('submit', editProfFormSubmitHandler);
 // Лисенеры на форму добавления карточки места

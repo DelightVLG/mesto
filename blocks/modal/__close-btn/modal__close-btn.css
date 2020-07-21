@@ -13,10 +13,10 @@
   opacity: .6;
 }
 
-@media screen and (max-width: 530px){
-  .modal__close-btn {
-    right: 0;
-    top: 0;
-    background-image: url('../../../images/close-icn-blck.svg');
-  }
-}
+/*@media screen and (max-width: 530px){*/
+/*  .modal__close-btn {*/
+/*    right: 0;*/
+/*    top: 0;*/
+/*    background-image: url('../../../images/close-icn-blck.svg');*/
+/*  }*/
+/*}*/
