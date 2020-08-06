@@ -43,9 +43,13 @@
 		<span class="modal__close-btn"></span>
 		<h2 class="modal__title">Редактировать профиль</h2>
 		<form class="modal__form" action="#" method="POST">
-			<input type="text" class="modal__input-txt modal__input-txt_type_name" value="" name="profile-name">
-			<input type="text" class="modal__input-txt modal__input-txt_type_job" value="" name="profile-job">
-			<input type="submit" class="modal__sbmt-btn" value="Сохранить" name="save">
+			<input type="text" class="modal__input-txt modal__input-txt_type_name" value="" name="profile-name"
+			placeholder="Имя" required minlength="2" maxlength="40">
+			<span class="modal__error"></span>
+			<input type="text" class="modal__input-txt modal__input-txt_type_job" value="" name="profile-job"
+			placeholder="Ваша профессия?" required minlength="2" maxlength="200">
+			<input type="submit" class="modal__sbmt-btn_disabled" value="Сохранить" name="save" disabled>
+			<span class="modal__error"></span>
 		</form>
 		</div>
 </div>
@@ -56,10 +60,10 @@
 		<h2 class="modal__title">Новое место</h2>
 		<form class="modal__form" action="#" method="POST">
 			<input type="text" class="modal__input-txt modal__input-txt_type_place-name"
-			       value="" name="place-name" placeholder="Название">
-			<input type="text" class="modal__input-txt modal__input-txt_type_img-url"
-			       value="" name="place-url" placeholder="Ссылка на картинку">
-			<input type="submit" class="modal__sbmt-btn" value="Сохранить" name="save">
+			       value="" name="place-name" placeholder="Название" required minlength="1" maxlength="30">
+			<input type="url" class="modal__input-txt modal__input-txt_type_img-url"
+			       value="" name="place-url" placeholder="Ссылка на картинку" required>
+			<input type="submit" class="modal__sbmt-btn_disabled" value="Сохранить" name="save" disabled>
 		</form>
 	</div>
 </div>
@@ -84,6 +88,7 @@
 </template>
 
 <script src="script/initialCardsArr.js"></script>
+<script src="script/validate.js"></script>
 <script src="script/index.js"></script>
 </body>
 </html>
