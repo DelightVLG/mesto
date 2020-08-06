@@ -24,29 +24,29 @@ const previewImage = previewModal.querySelector('.modal__preview-img');
 const previewSubtitle = previewModal.querySelector('.modal__preview-subtitle');
 const previewClsBtn = previewModal.querySelector('.modal__close-btn_type_preview');
 
-const modalList = Array.from(page.querySelectorAll('.modal'));
-
-// Функция открытия/закрытия модалок
 const toggleModal = (modalType) => {
+  const modalIsOpen = modalType.classList.contains('modal_is-open');
+  if (!modalIsOpen) {
+    page.addEventListener('keydown', escCloseModal);
+    page.addEventListener('click', overlayCloseModal);
+  } else {
+    page.removeEventListener('keydown', escCloseModal);
+    page.removeEventListener('click', overlayCloseModal);
+  }
   modalType.classList.toggle('modal_is-open');
-  page.addEventListener('keydown', (evt) => {
-    if (evt.key === 'Escape') {
-      const modalIsOpen = page.querySelector('.modal_is-open');
-      if (modalIsOpen) {
-        toggleModal(modalIsOpen);
-      }
-    }
-  });
 };
 
-// Закрытие модалок на оверлей
-modalList.forEach((modalType) => {
-  modalType.addEventListener('mousedown', (evt) => {
-    if (!evt.target.closest('.modal__container')) {
-      toggleModal(evt.currentTarget);
-    }
-  });
-});
+const escCloseModal = (evt) => {
+  if (evt.key === 'Escape') {
+    toggleModal(page.querySelector('.modal_is-open'));
+  }
+};
+
+const overlayCloseModal = (evt) => {
+  if (evt.target.classList.contains('modal')) {
+    toggleModal(page.querySelector('.modal_is-open'));
+  }
+};
 
 //  Функция открытия модалки ред.профиля
 const toggleEditProfModal = () => {
@@ -135,7 +135,7 @@ const addPlaceSubmitHandler = (evt) => {
 };
 
 // Лисенеры на форму редактирования профиля
-// TODO: Сделать рефакторинг навешивания слушателей. Привести к едичному навешиванию
+// TODO: Сделать рефакторинг навешивания слушателей. Привести к единоразовосу навешиванию
 editProfOpenBtn.addEventListener('click', toggleEditProfModal);
 editProfClsBtn.addEventListener('click', () => toggleModal(editProfModal));
 editProfModalForm.addEventListener('submit', editProfFormSubmitHandler);
@@ -144,4 +144,4 @@ addPlaceOpenBtn.addEventListener('click', () => toggleModal(addPlaceModal));
 addPlaceClsBtn.addEventListener('click', () => toggleModal(addPlaceModal));
 addPlaceModal.addEventListener('submit', addPlaceSubmitHandler);
 // Лиснер на закрытие превью картинки карточки
-previewClsBtn.addEventListener('click', () => toggleModal());
+previewClsBtn.addEventListener('click', () => toggleModal(previewModal));
