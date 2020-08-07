@@ -12,6 +12,7 @@ const profileName = page.querySelector('.profile__title');
 const profileSubtitle = page.querySelector('.profile__subtitle');
 const modalFormName = editProfModal.querySelector('.modal__input-txt_type_name');
 const modalFormJob = editProfModal.querySelector('.modal__input-txt_type_job');
+const editProfSubBtn = editProfModal.querySelector('.modal__sbmt-btn');
 
 const addPlaceModal = page.querySelector('.modal_type_add-place');
 const addPlaceOpenBtn = page.querySelector('.profile__add-btn');
@@ -53,6 +54,7 @@ const toggleEditProfModal = () => {
   if (!editProfModal.classList.contains('modal_is-open')) {
     modalFormName.value = profileName.textContent;
     modalFormJob.value = profileSubtitle.textContent;
+    editProfSubBtn.classList.remove('modal__sbmt-btn_disabled');
   }
   toggleModal(editProfModal);
 };

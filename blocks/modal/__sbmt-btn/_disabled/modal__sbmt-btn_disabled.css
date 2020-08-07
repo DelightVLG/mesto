@@ -10,3 +10,8 @@
   margin-top: 48px;
   opacity: .2;
 }
+
+.modal__sbmt-btn_disabled:hover {
+  background-color: rgb(255,255,255);
+  cursor: default;
+}

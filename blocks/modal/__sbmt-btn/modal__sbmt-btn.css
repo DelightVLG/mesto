@@ -1,4 +1,4 @@
-.modal__sbmt-btn_is-active {
+.modal__sbmt-btn {
   border: none;
   width: 100%;
   height: 50px;
@@ -11,6 +11,6 @@
   margin-top: 48px;
 }
 
-.modal__sbmt-btn__is-active:hover {
+.modal__sbmt-btn:hover {
   background-color: rgba(0,0,0,.8);
 }
