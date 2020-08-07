@@ -1,4 +1,4 @@
-const modalsObject = {
+const validationSettings = {
   formSelector: '.modal__form',
   inputSelector: '.modal__input-txt',
   submitButtonSelector: '.modal__sbmt-btn',
@@ -84,4 +84,4 @@ const enableValidation = (object) => {
   });
 };
 
-enableValidation(modalsObject);
+enableValidation(validationSettings);

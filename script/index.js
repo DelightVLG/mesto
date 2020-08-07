@@ -19,6 +19,7 @@ const addPlaceOpenBtn = page.querySelector('.profile__add-btn');
 const addPlaceClsBtn = addPlaceModal.querySelector('.modal__close-btn');
 const addPlaceNameInput = addPlaceModal.querySelector('.modal__input-txt_type_place-name');
 const addPlaceUrlInput = addPlaceModal.querySelector('.modal__input-txt_type_img-url');
+const addPlaceSbmtButton = addPlaceModal.querySelector('.modal__sbmt-btn');
 
 const previewModal = page.querySelector('.modal_type_preview');
 const previewImage = previewModal.querySelector('.modal__preview-img');
@@ -142,7 +143,11 @@ editProfOpenBtn.addEventListener('click', toggleEditProfModal);
 editProfClsBtn.addEventListener('click', () => toggleModal(editProfModal));
 editProfModalForm.addEventListener('submit', editProfFormSubmitHandler);
 // Лисенеры на форму добавления карточки места
-addPlaceOpenBtn.addEventListener('click', () => toggleModal(addPlaceModal));
+// TODO: подумать как сделать покрасивше потом
+addPlaceOpenBtn.addEventListener('click', () => {
+  disableButton(addPlaceSbmtButton, 'modal__sbmt-btn_disabled');
+  toggleModal(addPlaceModal);
+});
 addPlaceClsBtn.addEventListener('click', () => toggleModal(addPlaceModal));
 addPlaceModal.addEventListener('submit', addPlaceSubmitHandler);
 // Лиснер на закрытие превью картинки карточки
