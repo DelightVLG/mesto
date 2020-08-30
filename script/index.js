@@ -1,9 +1,7 @@
-// eslint-disable-next-line no-undef
 const page = document.querySelector('.page');
 
 const cardsTemplate = page.querySelector('.cards-template').content;
-const cardsContainer = page.querySelector('.elements'); // Контейнер всех карточек ul
-// TODO: Сделать рефакторинг форм. Тема: Доступ к значениям элементов форм.
+const cardsContainer = page.querySelector('.elements');
 const editProfModal = page.querySelector('.modal_type_edit-profile');
 const editProfOpenBtn = page.querySelector('.profile__edit-btn');
 const editProfClsBtn = editProfModal.querySelector('.modal__close-btn');
@@ -17,6 +15,7 @@ const editProfSubBtn = editProfModal.querySelector('.modal__sbmt-btn');
 const addPlaceModal = page.querySelector('.modal_type_add-place');
 const addPlaceOpenBtn = page.querySelector('.profile__add-btn');
 const addPlaceClsBtn = addPlaceModal.querySelector('.modal__close-btn');
+const addPlaceModalForm = document.addPlaceForm;
 const addPlaceNameInput = addPlaceModal.querySelector('.modal__input-txt_type_place-name');
 const addPlaceUrlInput = addPlaceModal.querySelector('.modal__input-txt_type_img-url');
 const addPlaceSbmtButton = addPlaceModal.querySelector('.modal__sbmt-btn');
@@ -104,7 +103,6 @@ const createCard = (link, name) => {
 const addElement = (container, element) => container.append(element);
 
 // Функция рендеринга начальных карточек при загрузке страницы
-// eslint-disable-next-line no-undef
 initialCards.forEach((elem) => {
   const cardElement = createCard(elem.link, elem.name);
   addElement(cardsContainer, cardElement);
@@ -131,9 +129,7 @@ const addPlaceSubmitHandler = (evt) => {
 
   cardsContainer.prepend(cardElement);
 
-  addPlaceUrlInput.value = '';
-  addPlaceNameInput.value = '';
-
+  addPlaceModalForm.reset();
   toggleModal(addPlaceModal);
 };
 
