@@ -1,6 +1,9 @@
+import Card from './Сard.js';
+import FormValidator from "./FormValidator.js";
+import initialCards from './initialCardsArr.js';
+
 const page = document.querySelector('.page');
 
-const cardsTemplate = page.querySelector('.cards-template').content;
 const cardsContainer = page.querySelector('.elements');
 const editProfModal = page.querySelector('.modal_type_edit-profile');
 const editProfOpenBtn = page.querySelector('.profile__edit-btn');
@@ -25,6 +28,17 @@ const previewImage = previewModal.querySelector('.modal__preview-img');
 const previewSubtitle = previewModal.querySelector('.modal__preview-subtitle');
 const previewClsBtn = previewModal.querySelector('.modal__close-btn_type_preview');
 
+export { previewModal, previewImage, previewSubtitle };
+
+// Рендеринг начальных карточек при загрузке страницы
+initialCards.forEach((cardItem) => {
+  const card = new Card(cardItem.name, cardItem.link, '.cards-template');
+  const cardElement = card.createCard();
+
+  cardsContainer.append(cardElement);
+});
+
+// Универсальная функция открытия/закрытия модальных окон
 const toggleModal = (modalType) => {
   const modalIsOpen = modalType.classList.contains('modal_is-open');
   if (!modalIsOpen) {
@@ -37,6 +51,9 @@ const toggleModal = (modalType) => {
   modalType.classList.toggle('modal_is-open');
 };
 
+export { toggleModal };
+
+// Закрытие модальных окон на эск и оверлей.
 const escCloseModal = (evt) => {
   if (evt.key === 'Escape') {
     toggleModal(page.querySelector('.modal_is-open'));
@@ -59,55 +76,6 @@ const toggleEditProfModal = () => {
   toggleModal(editProfModal);
 };
 
-// Обработчик кнопки лайка
-const likeListener = (elem) => {
-  elem.querySelector('.elements__like-btn').addEventListener('click', (evt) => {
-    evt.target.classList.toggle('elements__like-btn_is-active');
-  });
-};
-
-// Обработчик мусорки
-const cardDelete = (elem) => {
-  elem.querySelector('.elements__del-btn').addEventListener('click', (evt) => {
-    evt.target.closest('li').remove();
-  });
-};
-
-// Обработчик превью картинки карточки
-const cardImgPreview = (elem, src, subtitle = '') => {
-  elem.querySelector('.elements__img').addEventListener('click', () => {
-    previewImage.src = src;
-    previewSubtitle.textContent = subtitle;
-    toggleModal(previewModal);
-  });
-};
-
-// Функция, описывающая логику создания внутренности карточки и навешивания лисенеров
-const createCard = (link, name) => {
-  const cardElement = cardsTemplate.cloneNode(true);
-  const elementImg = cardElement.querySelector('.elements__img');
-
-  elementImg.src = link;
-  elementImg.alt = `Фотография. ${name}`;
-
-  cardElement.querySelector('.elements__title').textContent = name;
-
-  likeListener(cardElement);
-  cardDelete(cardElement);
-  cardImgPreview(cardElement, link, name);
-
-  return cardElement;
-};
-
-// Функция добавления карточки в контейнер
-const addElement = (container, element) => container.append(element);
-
-// Функция рендеринга начальных карточек при загрузке страницы
-initialCards.forEach((elem) => {
-  const cardElement = createCard(elem.link, elem.name);
-  addElement(cardsContainer, cardElement);
-});
-
 // Функция обработчика сабмита на форме редактрования профиля
 const editProfFormSubmitHandler = (evt) => {
   evt.preventDefault();
@@ -125,7 +93,13 @@ const editProfFormSubmitHandler = (evt) => {
 const addPlaceSubmitHandler = (evt) => {
   evt.preventDefault();
 
-  const cardElement = createCard(addPlaceUrlInput.value, addPlaceNameInput.value);
+  const card = new Card(
+    addPlaceNameInput.value,
+    addPlaceUrlInput.value,
+    '.cards-template',
+  );
+
+  const cardElement = card.createCard();
 
   cardsContainer.prepend(cardElement);
 
@@ -133,15 +107,33 @@ const addPlaceSubmitHandler = (evt) => {
   toggleModal(addPlaceModal);
 };
 
+// Настройка валидации полей
+const validationSettings = {
+  formSelector: '.modal__form',
+  inputSelector: '.modal__input-txt',
+  submitButtonSelector: '.modal__sbmt-btn',
+  inactiveButtonClass: 'modal__sbmt-btn_disabled',
+  inputErrorClass: 'modal__input-txt_invalid',
+  errorClass: '.modal__input-error_is-active',
+};
+
+const validatorProfile = new FormValidator(validationSettings, editProfModal);
+const validatorCard = new FormValidator(validationSettings, addPlaceModal);
+
+const startValidation = () => {
+  validatorProfile.enableValidation();
+  validatorCard.enableValidation();
+};
+
+startValidation();
+
 // Лисенеры на форму редактирования профиля
-// TODO: Сделать рефакторинг навешивания слушателей. Привести к единоразовосу навешиванию
 editProfOpenBtn.addEventListener('click', toggleEditProfModal);
 editProfClsBtn.addEventListener('click', () => toggleModal(editProfModal));
 editProfModalForm.addEventListener('submit', editProfFormSubmitHandler);
 // Лисенеры на форму добавления карточки места
-// TODO: подумать как сделать покрасивше потом
 addPlaceOpenBtn.addEventListener('click', () => {
-  disableButton(addPlaceSbmtButton, 'modal__sbmt-btn_disabled');
+  validatorCard.disableButton(addPlaceSbmtButton);
   toggleModal(addPlaceModal);
 });
 addPlaceClsBtn.addEventListener('click', () => toggleModal(addPlaceModal));

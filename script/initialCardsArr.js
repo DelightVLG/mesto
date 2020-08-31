@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 const initialCards = [
   {
     name: 'Бали',
@@ -31,3 +30,5 @@ const initialCards = [
       + '=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=975&q=80',
   },
 ];
+
+export default initialCards;
