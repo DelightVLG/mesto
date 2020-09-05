@@ -1,6 +1,6 @@
-import Card from './Сard.js';
-import FormValidator from "./FormValidator.js";
-import initialCards from './initialCardsArr.js';
+import Card from '../script/Сard.js';
+import FormValidator from "../script/FormValidator.js";
+import initialCards from '../script/initialCardsArr.js';
 
 const page = document.querySelector('.page');
 

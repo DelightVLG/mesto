@@ -1,7 +1,7 @@
 import {
   previewImage, previewModal, previewSubtitle, toggleModal,
 // eslint-disable-next-line import/extensions
-} from './index.js';
+} from '../pages/index.js';
 
 export default class Card {
   constructor(name, link, cardSelector) {
@@ -10,7 +10,7 @@ export default class Card {
     this._cardSelector = cardSelector;
   }
 
-  // Метод для получения темплейта карточек
+  // Метод для получения и клонирования темплейта карточки
   _getTemplate() {
     return document.querySelector(this._cardSelector)
       .content
