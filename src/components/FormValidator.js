@@ -78,6 +78,24 @@ export default class FormValidator {
     });
   }
 
+  hideAllErrors() {
+    const inputElements = Array.from(
+      this._formElement.querySelectorAll('.modal__input-txt'),
+    );
+    const errorElements = Array.from(
+      this._formElement.querySelectorAll('.modal__input-error'),
+    );
+
+    inputElements.forEach((input) => {
+      input.classList.remove(this._inputErrorClass);
+    });
+
+    errorElements.forEach((element) => {
+      // eslint-disable-next-line no-param-reassign
+      element.classList.remove(this._errorClass).textContent = '';
+    });
+  }
+
   enableValidation() {
     this._setEventListeners();
   }

@@ -1,13 +1,11 @@
-import {
-  previewImage, previewModal, previewSubtitle, toggleModal,
-// eslint-disable-next-line import/extensions
-} from '../pages/index.js';
-
 export default class Card {
-  constructor(name, link, cardSelector) {
+  constructor(name, link, cardSelector, cardClickHandle) {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
+    this._cardClickHandle = cardClickHandle;
+    // this._deleteCard = this._deleteCard.bind(this);
+    this._toggleLikeButton = this._toggleLikeButton.bind(this);
   }
 
   // Метод для получения и клонирования темплейта карточки
@@ -45,14 +43,6 @@ export default class Card {
     this._element.remove();
   }
 
-  // Метод для показа фото карточки в модальном окне
-  _showFullImage() {
-    previewImage.src = this._link;
-    previewImage.atl = this._name;
-    previewSubtitle.textContent = this._name;
-    toggleModal(previewModal);
-  }
-
   // Метод для навешивания слушателей
   _setEventListeners() {
     const cardImage = this._element.querySelector('.elements__img');
@@ -60,7 +50,7 @@ export default class Card {
     const cardDeleteBtn = this._element.querySelector('.elements__del-btn');
 
     cardImage.addEventListener('click', () => {
-      this._showFullImage();
+      this._cardClickHandle(this._name, this._link);
     });
 
     cardLikeBtn.addEventListener('click', () => {
