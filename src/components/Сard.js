@@ -4,7 +4,6 @@ export default class Card {
     this._link = link;
     this._cardSelector = cardSelector;
     this._cardClickHandle = cardClickHandle;
-    // this._deleteCard = this._deleteCard.bind(this);
     this._toggleLikeButton = this._toggleLikeButton.bind(this);
   }
 

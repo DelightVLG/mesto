@@ -1,3 +1,4 @@
+import './index.css';
 import Card from '../components/Сard.js';
 import FormValidator from "../components/FormValidator.js";
 import Section from '../components/Section.js';
@@ -36,6 +37,7 @@ function addCard(name, link) {
   return card.createCard();
 }
 
+// Создание экземпляра класса Section
 const cardList = new Section({
   data: initialCards,
   renderer: (item) => {
@@ -43,25 +45,30 @@ const cardList = new Section({
   },
 }, '.elements');
 
+// Отрисовка начальных карточек
 cardList.renderItems();
 
+// Создание нового экземпляра класса превью картинки
 const openModalImage = new ModalWithImage(previewModal);
 openModalImage.setEventListeners();
 
+// Хендлер полноформатного изображения
 function cardClickHandle(name, link) {
   openModalImage.open(name, link);
 }
-
+// Создание нового экземпляра класса UserInfo
 const user = new UserInfo({
   name: profileName,
   job: profileSubtitle,
 });
 
+// Создание нового экземпляра класса ModalWithForm -> форма ред. профиля
 const modalEditProfile = new ModalWithForm(editProfModal, () => {
   user.setUserInfo(modalFormName, modalFormJob);
   modalEditProfile.close();
 });
 
+// Создание нового экземпляра класса ModalWithForm -> форма доб. карточки
 const modalAddCard = new ModalWithForm(addPlaceModal, (data) => {
   console.log('data:', data);
   cardList.addItem(addCard(data.placeName, data.placeUrl));
