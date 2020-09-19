@@ -1,9 +1,9 @@
 export default class Card {
-  constructor(name, link, cardSelector, cardClickHandle) {
+  constructor(name, link, cardSelector, handleCardClick) {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
-    this._cardClickHandle = cardClickHandle;
+    this._handleCardClick = handleCardClick;
     this._toggleLikeButton = this._toggleLikeButton.bind(this);
   }
 
@@ -49,7 +49,7 @@ export default class Card {
     const cardDeleteBtn = this._element.querySelector('.elements__del-btn');
 
     cardImage.addEventListener('click', () => {
-      this._cardClickHandle(this._name, this._link);
+      this._handleCardClick(this._name, this._link);
     });
 
     cardLikeBtn.addEventListener('click', () => {

@@ -70,10 +70,7 @@ const modalEditProfile = new ModalWithForm(editProfModal, () => {
 
 // Создание нового экземпляра класса ModalWithForm -> форма доб. карточки
 const modalAddCard = new ModalWithForm(addPlaceModal, (data) => {
-  console.log('data:', data);
   cardList.addItem(addCard(data.placeName, data.placeUrl));
-  console.log('data.name:', data.name);
-  console.log('data.link:', data.link);
   modalAddCard.close();
 });
 

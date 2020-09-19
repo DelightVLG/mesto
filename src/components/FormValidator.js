@@ -8,7 +8,7 @@ export default class FormValidator {
     this._errorClass = settings.errorClass;
   }
 
-  // Метод отображающий ощибку при заполнении полей
+  // Метод отображающий ошибку при заполнении полей
   _showInputError(input, errorMessage) {
     const errorElement = this._formElement.querySelector(`#${input.name}-error`);
 
@@ -91,8 +91,9 @@ export default class FormValidator {
     });
 
     errorElements.forEach((element) => {
+      element.classList.remove(this._errorClass);
       // eslint-disable-next-line no-param-reassign
-      element.classList.remove(this._errorClass).textContent = '';
+      element.textContent = '';
     });
   }
 
