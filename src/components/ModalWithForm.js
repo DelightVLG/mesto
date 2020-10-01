@@ -14,6 +14,7 @@ export default class ModalWithForm extends Modal {
     this._inputList.forEach((input) => {
       this._formValues[input.name] = input.value;
     });
+    // console.log(this._formValues);
     return this._formValues;
   }
 

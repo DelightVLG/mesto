@@ -7,7 +7,7 @@ export default class Card {
     this._toggleLikeButton = this._toggleLikeButton.bind(this);
   }
 
-  // Метод для получения и клонирования темплейта карточки
+  // Метод для получения и клонирования темплейта карточки (разметки)
   _getTemplate() {
     return document.querySelector(this._cardSelector)
       .content
@@ -17,9 +17,10 @@ export default class Card {
 
   // Метод для создания образца карточки
   createCard() {
-    this._element = this._getTemplate();
+    this._element = this._getTemplate(); // запись разметки в приватное св-во
     this._setEventListeners();
 
+    // Добавление данных
     const cardImage = this._element.querySelector('.elements__img');
     const cardTitle = this._element.querySelector('.elements__title');
 

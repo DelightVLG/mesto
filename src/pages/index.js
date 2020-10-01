@@ -62,11 +62,15 @@ const user = new UserInfo({
   job: profileSubtitle,
 });
 
+// console.log('user:', user);
+
 // Создание нового экземпляра класса ModalWithForm -> форма ред. профиля
-const modalEditProfile = new ModalWithForm(editProfModal, () => {
-  user.setUserInfo(modalFormName, modalFormJob);
+const modalEditProfile = new ModalWithForm(editProfModal, (data) => {
+  user.setUserInfo(data);
   modalEditProfile.close();
 });
+
+console.log('ModalWithForm:', modalEditProfile);
 
 // Создание нового экземпляра класса ModalWithForm -> форма доб. карточки
 const modalAddCard = new ModalWithForm(addPlaceModal, (data) => {

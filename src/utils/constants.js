@@ -1,9 +1,6 @@
 // Profile constants
-const cardsContainer = document.querySelector('.elements');
 export const editProfModal = document.querySelector('.modal_type_edit-profile');
 export const editProfOpenBtn = document.querySelector('.profile__edit-btn');
-const editProfClsBtn = editProfModal.querySelector('.modal__close-btn');
-const editProfModalForm = editProfModal.querySelector('.modal__form');
 export const profileName = document.querySelector('.profile__title');
 export const profileSubtitle = document.querySelector('.profile__subtitle');
 export const modalFormName = editProfModal.querySelector('.modal__input-txt_type_name');
@@ -13,17 +10,11 @@ export const editProfSubBtn = editProfModal.querySelector('.modal__sbmt-btn');
 // Add place constants
 export const addPlaceModal = document.querySelector('.modal_type_add-place');
 export const addPlaceOpenBtn = document.querySelector('.profile__add-btn');
-const addPlaceClsBtn = addPlaceModal.querySelector('.modal__close-btn');
-const addPlaceModalForm = document.addPlaceForm;
-const addPlaceNameInput = addPlaceModal.querySelector('.modal__input-txt_type_place-name');
-const addPlaceUrlInput = addPlaceModal.querySelector('.modal__input-txt_type_img-url');
 export const addPlaceSbmtButton = addPlaceModal.querySelector('.modal__sbmt-btn');
 
 // Preview constants
 export const previewModal = document.querySelector('.modal_type_preview');
-const previewImage = previewModal.querySelector('.modal__preview-img');
-const previewSubtitle = previewModal.querySelector('.modal__preview-subtitle');
-const previewClsBtn = previewModal.querySelector('.modal__close-btn_type_preview');
+
 
 export const validationSettings = {
   formSelector: '.modal__form',
