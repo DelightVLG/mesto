@@ -14,9 +14,10 @@ export default class UserInfo {
     };
   }
 
-  setUserInfo(data) {
-    this._nameElement.textContent = data.profileName;
+  // Деструктуризация data (data.profileName, data.profileJob) -> ({ ..., ....})
+  setUserInfo({ profileName, profileJob }) {
+    this._nameElement.textContent = profileName;
     // console.log(this._name.textContent = data.profileName);
-    this._jobElement.textContent = data.profileJob;
+    this._jobElement.textContent = profileJob;
   }
 }
