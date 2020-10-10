@@ -15,7 +15,6 @@ export const addPlaceSbmtButton = addPlaceModal.querySelector('.modal__sbmt-btn'
 // Preview constants
 export const previewModal = document.querySelector('.modal_type_preview');
 
-
 export const validationSettings = {
   formSelector: '.modal__form',
   inputSelector: '.modal__input-txt',
