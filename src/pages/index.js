@@ -1,4 +1,5 @@
 import './index.css';
+import Api from '../components/Api.js';
 import Card from '../components/Сard.js';
 import FormValidator from "../components/FormValidator.js";
 import Section from '../components/Section.js';
@@ -19,8 +20,17 @@ import {
   previewModal,
   profileName,
   profileSubtitle,
+  profileAvatar,
   validationSettings,
 } from '../utils/constants.js';
+
+const api = new Api({
+  url: 'https://mesto.nomoreparties.co/v1/cohort-16',
+  headers: {
+    authorization: 'c2262ae2-cc7e-47ac-904f-82f5dcb37778',
+    'Content-Type': 'application/json',
+  },
+});
 
 const validatorProfile = new FormValidator(validationSettings, editProfModal);
 const validatorCard = new FormValidator(validationSettings, addPlaceModal);
@@ -31,6 +41,23 @@ const startValidation = () => {
 };
 
 startValidation();
+
+// Создание нового экземпляра класса UserInfo и получение данных с сервера
+const user = new UserInfo({
+  name: profileName,
+  job: profileSubtitle,
+  avatar: profileAvatar,
+});
+
+api
+  .getUserInfo()
+  .then((data) => {
+    user.setUserInfo(data);
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+// -------------------------------------------------------------------------
 
 function addCard(name, link) {
   const card = new Card(name, link, '.cards-template', cardClickHandle);
@@ -56,11 +83,6 @@ openModalImage.setEventListeners();
 function cardClickHandle(name, link) {
   openModalImage.open(name, link);
 }
-// Создание нового экземпляра класса UserInfo
-const user = new UserInfo({
-  name: profileName,
-  job: profileSubtitle,
-});
 
 // Создание нового экземпляра класса ModalWithForm -> форма ред. профиля
 const modalEditProfile = new ModalWithForm(editProfModal, (data) => {

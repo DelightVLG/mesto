@@ -3,6 +3,7 @@ export const editProfModal = document.querySelector('.modal_type_edit-profile');
 export const editProfOpenBtn = document.querySelector('.profile__edit-btn');
 export const profileName = document.querySelector('.profile__title');
 export const profileSubtitle = document.querySelector('.profile__subtitle');
+export const profileAvatar = document.querySelector('.profile__photo');
 export const modalFormName = editProfModal.querySelector('.modal__input-txt_type_name');
 export const modalFormJob = editProfModal.querySelector('.modal__input-txt_type_job');
 export const editProfSubBtn = editProfModal.querySelector('.modal__sbmt-btn');
