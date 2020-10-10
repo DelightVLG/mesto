@@ -33,12 +33,14 @@
 @import url('../blocks/modal/_is-open/modal_is-open.css');
 @import url('../blocks/modal/__container/modal__container.css');
 @import url('../blocks/modal/__title/modal__title.css');
+@import url('../blocks/modal/__title/_type_del-submit/modal__title_type_del-submit.css');
 @import url('../blocks/modal/__form/modal__form.css');
 @import url('../blocks/modal/__input-txt/modal__input-txt.css');
 @import url('../blocks/modal/__input-txt/_invalid/modal__input-txt_invalid.css');
 @import url('../blocks/modal/__input-error/modal__input-error.css');
 @import url('../blocks/modal/__sbmt-btn/modal__sbmt-btn.css');
 @import url('../blocks/modal/__sbmt-btn/_disabled/modal__sbmt-btn_disabled.css');
+@import url('../blocks/modal/__sbmt-btn/_type_del-submit/modal__sbmt-btn_type_del-submit.css');
 @import url('../blocks/modal/__close-btn/modal__close-btn.css');
 @import url('../blocks/modal/__preview-container/modal__preview-container.css');
 @import url('../blocks/modal/__preview-img/modal__preview-img.css');

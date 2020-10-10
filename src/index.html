@@ -78,7 +78,17 @@
 				<input type="url" class="modal__input-txt modal__input-txt_type_img-url"
 			       value="" name="placeUrl" placeholder="Ссылка на картинку" required >
 			<span class="modal__input-error" id="placeUrl-error"></span>
-			<input type="submit" class="modal__sbmt-btn" value="Сохранить" name="save" disabled>
+			<input type="submit" class="modal__sbmt-btn" value="Создать" name="save" disabled>
+		</form>
+	</div>
+</div>
+
+<div class="modal modal_type_del-submit">
+	<div class="modal__container">
+		<span class="modal__close-btn"></span>
+		<h2 class="modal__title modal__title_type_del-submit">Вы уверены?</h2>
+		<form class="modal__form" action="#" method="POST" name="delPlaceSubmit">
+			<input type="submit" class="modal__sbmt-btn modal__sbmt-btn_type_del-submit" value="Да" name="deletePlace">
 		</form>
 	</div>
 </div>
