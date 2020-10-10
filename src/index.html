@@ -53,6 +53,19 @@
 		</div>
 </div>
 
+<div class="modal modal_type_edit-avatar">
+	<div class="modal__container">
+		<span class="modal__close-btn"></span>
+		<h2 class="modal__title">Обновить аватар</h2>
+		<form class="modal__form" action="#" method="POST" novalidate name="editProfileForm">
+			<input type="url" class="modal__input-txt modal__input-txt_type_edit-avatar" value="" name="profileEditAvatar"
+			       placeholder="Ссылка на новое фото" autocomplete="off">
+			<span class="modal__input-error" id="profileEditAvatar-error"></span>
+			<input type="submit" class="modal__sbmt-btn" value="Сохранить" name="save" disabled>
+		</form>
+	</div>
+</div>
+
 <div class="modal modal_type_add-place">
 	<div class="modal__container">
 		<span class="modal__close-btn"></span>
