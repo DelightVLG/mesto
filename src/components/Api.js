@@ -18,4 +18,15 @@ export default class Api {
     })
       .then((res) => this._getResponse(res));
   }
+
+  saveUserInfo(inputsValues) {
+    return fetch(`${this._url}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: inputsValues.name,
+        about: inputsValues.about,
+      }),
+    }).then(this._getResponse);
+  }
 }

@@ -1,7 +1,7 @@
 import Modal from './Modal.js';
 
 export default class ModalWithForm extends Modal {
-  constructor(modalSelector, handleFormSubmit) {
+  constructor(modalSelector, { handleFormSubmit }) {
     super(modalSelector);
     this._handleFormSubmit = handleFormSubmit;
     this._form = this._modalSelector.querySelector('.modal__form');
@@ -32,5 +32,9 @@ export default class ModalWithForm extends Modal {
       this._handleFormSubmit(this._getInputValues());
       this.close();
     });
+  }
+
+  renderLoading(isLoading) {
+    this._modalSelector.querySelector('.modal__sbmt-btn').textContent = isLoading;
   }
 }

@@ -42,13 +42,13 @@ const startValidation = () => {
 
 startValidation();
 
-// Создание нового экземпляра класса UserInfo и получение данных с сервера
+// Создание нового экземпляра класса UserInfo ->
 const user = new UserInfo({
   name: profileName,
   job: profileSubtitle,
   avatar: profileAvatar,
 });
-
+// -> получение данных с сервера
 api
   .getUserInfo()
   .then((data) => {
@@ -57,6 +57,27 @@ api
   .catch((err) => {
     console.error(err);
   });
+
+// -> создание нового класса модалки ред.профиля и отпарвка данных на сервер
+const modalEditProfile = new ModalWithForm(editProfModal, {
+  handleFormSubmit: (inputsValues) => {
+    console.log('Input values:', inputsValues);
+    modalEditProfile.renderLoading('Сохранение...');
+    api.saveUserInfo(inputsValues)
+      .then((res) => {
+        // console.log('res:', res);
+        user.setUserInfo(res);
+        modalEditProfile.renderLoading('Сохранить');
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+      .finally(() => {
+        modalEditProfile.close();
+      });
+  },
+});
+modalEditProfile.setEventListeners();
 // -------------------------------------------------------------------------
 
 function addCard(name, link) {
@@ -84,19 +105,12 @@ function cardClickHandle(name, link) {
   openModalImage.open(name, link);
 }
 
-// Создание нового экземпляра класса ModalWithForm -> форма ред. профиля
-const modalEditProfile = new ModalWithForm(editProfModal, (data) => {
-  user.setUserInfo(data);
-  modalEditProfile.close();
-});
-
 // Создание нового экземпляра класса ModalWithForm -> форма доб. карточки
 const modalAddCard = new ModalWithForm(addPlaceModal, (data) => {
   cardList.addItem(addCard(data.placeName, data.placeUrl));
   modalAddCard.close();
 });
 
-modalEditProfile.setEventListeners();
 modalAddCard.setEventListeners();
 
 editProfOpenBtn.addEventListener('click', () => {
