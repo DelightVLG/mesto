@@ -61,19 +61,18 @@ api
 // -> создание нового класса модалки ред.профиля и отпарвка данных на сервер
 const modalEditProfile = new ModalWithForm(editProfModal, {
   handleFormSubmit: (inputsValues) => {
-    console.log('Input values:', inputsValues);
-    modalEditProfile.renderLoading('Сохранение...');
+    modalEditProfile.loading(true);
     api.saveUserInfo(inputsValues)
       .then((res) => {
         // console.log('res:', res);
         user.setUserInfo(res);
-        modalEditProfile.renderLoading('Сохранить');
+        modalEditProfile.close();
       })
       .catch((err) => {
         console.error(err);
       })
       .finally(() => {
-        modalEditProfile.close();
+        modalEditProfile.loading(false);
       });
   },
 });

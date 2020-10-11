@@ -5,6 +5,7 @@ export default class ModalWithForm extends Modal {
     super(modalSelector);
     this._handleFormSubmit = handleFormSubmit;
     this._form = this._modalSelector.querySelector('.modal__form');
+    this._submitBtn = this._form.querySelector('.modal__sbmt-btn');
   }
 
   _getInputValues() {
@@ -34,7 +35,7 @@ export default class ModalWithForm extends Modal {
     });
   }
 
-  renderLoading(isLoading) {
-    this._modalSelector.querySelector('.modal__sbmt-btn').textContent = isLoading;
+  loading(isLoading) {
+    this._submitBtn.textContent = isLoading ? 'Сохранение' : 'Сохранить';
   }
 }
