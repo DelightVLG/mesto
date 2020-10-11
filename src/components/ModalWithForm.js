@@ -36,6 +36,6 @@ export default class ModalWithForm extends Modal {
   }
 
   loading(isLoading) {
-    this._submitBtn.textContent = isLoading ? 'Сохранение' : 'Сохранить';
+    this._submitBtn.textContent = isLoading ? 'Сохранение...' : 'Сохранить';
   }
 }
