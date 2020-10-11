@@ -21,9 +21,13 @@ import {
   profileName,
   profileSubtitle,
   profileAvatar,
+  editAvatarModal,
+  editAvatarBtn,
+  editAvatarSbmBtn,
   validationSettings,
 } from '../utils/constants.js';
 
+// ---------------------------------------------------------------------------
 const api = new Api({
   url: 'https://mesto.nomoreparties.co/v1/cohort-16',
   headers: {
@@ -31,17 +35,23 @@ const api = new Api({
     'Content-Type': 'application/json',
   },
 });
+// ---------------------------------------------------------------------------
 
+// ---------------------------------------------------------------------------
 const validatorProfile = new FormValidator(validationSettings, editProfModal);
 const validatorCard = new FormValidator(validationSettings, addPlaceModal);
+const validatorAvatar = new FormValidator(validationSettings, editAvatarModal);
 
 const startValidation = () => {
   validatorProfile.enableValidation();
   validatorCard.enableValidation();
+  validatorAvatar.enableValidation();
 };
 
 startValidation();
+// ---------------------------------------------------------------------------
 
+// ---------------------------------------------------------------------------
 // Создание нового экземпляра класса UserInfo ->
 const user = new UserInfo({
   name: profileName,
@@ -62,7 +72,8 @@ api
 const modalEditProfile = new ModalWithForm(editProfModal, {
   handleFormSubmit: (inputsValues) => {
     modalEditProfile.loading(true);
-    api.saveUserInfo(inputsValues)
+    api
+      .saveUserInfo(inputsValues)
       .then((res) => {
         // console.log('res:', res);
         user.setUserInfo(res);
@@ -77,6 +88,33 @@ const modalEditProfile = new ModalWithForm(editProfModal, {
   },
 });
 modalEditProfile.setEventListeners();
+// -------------------------------------------------------------------------
+
+// Редактирование аватара пользователя
+const modalAvatarEdit = new ModalWithForm(editAvatarModal, {
+  handleFormSubmit: (inputValue) => {
+    modalAvatarEdit.loading(true);
+    api
+      .changeAvatar(inputValue)
+      .then((res) => {
+        user.setUserInfo(res);
+        modalAvatarEdit.close();
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+      .finally(() => {
+        modalAvatarEdit.loading(false);
+      });
+  },
+});
+
+modalAvatarEdit.setEventListeners();
+
+editAvatarBtn.addEventListener('click', () => {
+  modalAvatarEdit.open();
+  validatorAvatar.disableButton(editAvatarSbmBtn);
+});
 // -------------------------------------------------------------------------
 
 function addCard(name, link) {

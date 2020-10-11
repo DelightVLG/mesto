@@ -29,4 +29,14 @@ export default class Api {
       }),
     }).then(this._getResponse);
   }
+
+  changeAvatar(inputValue) {
+    return fetch(`${this._url}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: inputValue.link,
+      }),
+    }).then(this._getResponse);
+  }
 }

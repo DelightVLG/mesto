@@ -17,13 +17,13 @@
 		<section class="profile page__profile">
 			<div class="profile__info">
 				<div class="profile__photo-container">
-				  <img class="profile__photo" src="images/profile-photo-2.jpg" alt="Фотография профиля">
+				  <img class="profile__photo" src="#" alt="Фотография профиля">
 				</div>
 				<div class="profile__heading">
-				<h1 class="profile__title">Сергей Компаниец</h1>
+				<h1 class="profile__title"></h1>
 				<button class="profile__edit-btn"></button>
 				</div>
-				<p class="profile__subtitle">Начинающий фронтенд разработчик</p>
+				<p class="profile__subtitle"></p>
 			</div>
 			<button class="profile__add-btn"></button>
 		</section>
@@ -59,10 +59,10 @@
 	<div class="modal__container">
 		<span class="modal__close-btn"></span>
 		<h2 class="modal__title">Обновить аватар</h2>
-		<form class="modal__form" action="#" method="POST" novalidate name="editProfileForm">
-			<input type="url" class="modal__input-txt modal__input-txt_type_edit-avatar" value="" name="profileEditAvatar"
+		<form class="modal__form" action="#" method="POST" novalidate name="editAvatarForm">
+			<input type="url" class="modal__input-txt modal__input-txt_type_edit-avatar" value="" name="link"
 			       placeholder="Ссылка на новое фото" autocomplete="off">
-			<span class="modal__input-error" id="profileEditAvatar-error"></span>
+			<span class="modal__input-error" id="link-error"></span>
 			<input type="submit" class="modal__sbmt-btn" value="Сохранить" name="save" disabled>
 		</form>
 	</div>
