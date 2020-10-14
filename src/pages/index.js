@@ -1,14 +1,18 @@
+// TODO: Задокументировать код с помощью JSDoc
+// TODO: После принятия работы поработать над уменьшением количества кода
+// TODO: После разбора курсовой работы (если будет), сделать рефакторинг проблемных частей
+
 import './index.css';
 import Api from '../components/Api.js';
 import Card from '../components/Сard.js';
-import FormValidator from "../components/FormValidator.js";
+import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import ModalWithImage from '../components/ModalWithImage.js';
 import ModalWithForm from '../components/ModalWithForm.js';
+import ModalWithSubmit from '../components/ModalWithSubmit';
 import UserInfo from '../components/UserInfo.js';
 
 import {
-  initialCards,
   addPlaceModal,
   addPlaceOpenBtn,
   addPlaceSbmtButton,
@@ -24,6 +28,7 @@ import {
   editAvatarModal,
   editAvatarBtn,
   editAvatarSbmBtn,
+  modalWithSubmit,
   validationSettings,
 } from '../utils/constants.js';
 
@@ -58,17 +63,8 @@ const user = new UserInfo({
   job: profileSubtitle,
   avatar: profileAvatar,
 });
-// -> получение данных с сервера
-api
-  .getUserInfo()
-  .then((data) => {
-    user.setUserInfo(data);
-  })
-  .catch((err) => {
-    console.error(err);
-  });
 
-// -> создание нового класса модалки ред.профиля и отпарвка данных на сервер
+// -> создание нового класса модалки ред.профиля и отправка данных на сервер
 const modalEditProfile = new ModalWithForm(editProfModal, {
   handleFormSubmit: (inputsValues) => {
     modalEditProfile.loading(true);
@@ -90,6 +86,7 @@ const modalEditProfile = new ModalWithForm(editProfModal, {
 modalEditProfile.setEventListeners();
 // -------------------------------------------------------------------------
 
+// -------------------------------------------------------------------------
 // Редактирование аватара пользователя
 const modalAvatarEdit = new ModalWithForm(editAvatarModal, {
   handleFormSubmit: (inputValue) => {
@@ -117,35 +114,115 @@ editAvatarBtn.addEventListener('click', () => {
 });
 // -------------------------------------------------------------------------
 
-function addCard(name, link) {
-  const card = new Card(name, link, '.cards-template', cardClickHandle);
-  return card.createCard();
-}
-
-// Создание экземпляра класса Section
-const cardList = new Section({
-  data: initialCards,
-  renderer: (item) => {
-    cardList.addItem(addCard(item.name, item.link));
-  },
-}, '.elements');
-
-// Отрисовка начальных карточек
-cardList.renderItems();
-
-// Создание нового экземпляра класса превью картинки
+// Создание модалки превью картинки
 const openModalImage = new ModalWithImage(previewModal);
 openModalImage.setEventListeners();
 
-// Хендлер полноформатного изображения
-function cardClickHandle(name, link) {
-  openModalImage.open(name, link);
-}
+// Создание модалки удаления карточки
+const confirmModal = new ModalWithSubmit(modalWithSubmit);
+confirmModal.setEventListeners();
+
+// -------------------------------------------------------------------------
+
+const addCard = (item) => {
+  const currentUserId = user.getUserInfo().id;
+
+  // TODO: обратить внимание при разборе кода на реализацию проверки владельца карточки и лайка
+  item.isOwner = (item.owner._id === currentUserId);
+  item.isLiked = item.likes.some((like) => like._id === currentUserId);
+
+  const card = new Card(item, '.cards-template', {
+    handleCardClick: () => {
+      openModalImage.open(item.name, item.link);
+    },
+    handleDeleteClick: () => {
+      confirmModal.open();
+      confirmModal.setSubmitAction(() => {
+        api
+          .deleteCard(item._id)
+          .then(() => {
+            card.delete();
+          })
+          .catch((err) => {
+            console.error(err);
+          }).finally(() => {
+            confirmModal.close();
+          });
+      });
+    },
+    handleLikeClick: (cardId, isLiked) => {
+      if (isLiked) {
+        api
+          .dislikeCard(cardId)
+          .then(() => {
+            card.toggleLike();
+          })
+          .catch((err) => console.error(err));
+      } else {
+        api
+          .likeCard(cardId)
+          .then(() => {
+            card.toggleLike();
+          })
+          .catch((err) => console.error(err));
+      }
+    },
+  });
+
+  return card.createCard();
+};
+
+// -------------------------------------------------------------------------
+
+const cardList = new Section({
+  renderer: (data) => {
+    cardList.addItem(addCard(data));
+  },
+}, '.elements');
+
+// -------------------------------------------------------------------------
+
+// Пролучение карточек и данных пользователя с сервера.
+// TODO: При разборе курсовой обратить внимание как реализована эта часть с Promise.all
+Promise.all(
+  [
+    api.getUserInfo(),
+    api.getInitialCardList(),
+  ],
+)
+  .then((results) => {
+    const getUserInfoResult = results[0];
+    const getInitialCardsResult = results[1];
+    // userId = getUserInfoResult._id;
+    // console.log('getInitialCardsResult', getInitialCardsResult);
+    // console.log('getUserInfoResult', getUserInfoResult);
+
+    user.setUserInfo(getUserInfoResult);
+    cardList.renderItems(getInitialCardsResult.reverse());
+  })
+  .catch((err) => console.error(err));
+
+// -------------------------------------------------------------------------
 
 // Создание нового экземпляра класса ModalWithForm -> форма доб. карточки
-const modalAddCard = new ModalWithForm(addPlaceModal, (data) => {
-  cardList.addItem(addCard(data.placeName, data.placeUrl));
-  modalAddCard.close();
+const modalAddCard = new ModalWithForm(addPlaceModal, {
+  handleFormSubmit: (data) => {
+    console.log('cardData:', data);
+    modalAddCard.loading(true);
+    api
+      .saveCard(data)
+      .then((response) => {
+        // console.log('response:', response);
+        cardList.addItem(addCard(response));
+        modalAddCard.close();
+      })
+      .catch((err) => console.error(err))
+      .finally(() => {
+        modalAddCard.loading(false);
+      });
+
+    modalAddCard.close();
+  },
 });
 
 modalAddCard.setEventListeners();

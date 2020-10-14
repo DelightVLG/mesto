@@ -9,15 +9,11 @@ export default class ModalWithForm extends Modal {
   }
 
   _getInputValues() {
-    // достаём все элементы полей
     this._inputList = this._form.querySelectorAll('.modal__input-txt');
-    // создаём пустой объект
     this._formValues = {};
-    // добавляем в этот объект значения всех полей
     this._inputList.forEach((input) => {
       this._formValues[input.name] = input.value;
     });
-    // возвращаем объект значений
     return this._formValues;
   }
 

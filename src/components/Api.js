@@ -11,6 +11,47 @@ export default class Api {
     return Promise.reject(new Error(`Ошибка: ${res.status}`));
   }
 
+  getInitialCardList() {
+    return fetch(`${this._url}/cards`, {
+      headers: this._headers,
+    }).then(this._getResponse);
+  }
+
+  saveCard(cardData) {
+    return fetch(`${this._url}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: cardData.placeName,
+        link: cardData.placeUrl,
+      }),
+    })
+      .then(this._getResponse);
+  }
+
+  deleteCard(cardId) {
+    return fetch(`${this._url}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    }).then(this._getResponse);
+  }
+
+  likeCard(cardId) {
+    return fetch(`${this._url}/cards/likes/${cardId}`, {
+      method: 'PUT',
+      headers: this._headers,
+    })
+      .then(this._getResponse);
+  }
+
+  dislikeCard(cardId) {
+    return fetch(`${this._url}/cards/likes/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+      .then(this._getResponse);
+  }
+
   getUserInfo() {
     return fetch(`${this._url}/users/me`, {
       method: 'GET',

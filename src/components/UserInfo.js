@@ -13,14 +13,10 @@ export default class UserInfo {
     return {
       name: this._nameElement.textContent,
       job: this._jobElement.textContent,
+      id: this._userId,
     };
   }
 
-  getUserId() {
-    return this._userId;
-  }
-
-  // Деструктуризация data (data.profileName, data.profileJob) -> ({ ..., ....})
   setUserInfo({
     name, about, avatar, _id,
   }) {

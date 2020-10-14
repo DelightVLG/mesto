@@ -1,18 +1,15 @@
 export default class Section {
-  constructor({
-    data,
-    renderer,
-  }, containerSelector) {
-    this._rendererItems = data; // данные которые нужно перебрать и добавить
+  constructor({ renderer }, containerSelector) {
     this._renderer = renderer;
-    this._containerSelector = document.querySelector(containerSelector); // селектор куда вставить
+    this._containerSelector = document.querySelector(containerSelector);
   }
 
-  renderItems() {
-    this._rendererItems.forEach((items) => this._renderer(items));
+  renderItems(items) {
+    items.forEach((item) => {
+      this._renderer(item);
+    });
   }
 
-  // метод принимает элемент и втсавляет его в указанный контейнер
   addItem(elem) {
     this._containerSelector.prepend(elem);
   }

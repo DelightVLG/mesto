@@ -1,13 +1,31 @@
 export default class Card {
-  constructor(name, link, cardSelector, handleCardClick) {
-    this._name = name;
-    this._link = link;
+  constructor(
+    cardData, cardSelector, {
+      handleCardClick, handleDeleteClick, handleLikeClick,
+    },
+  ) {
     this._cardSelector = cardSelector;
+    this._element = this._getTemplate();
+    this._name = cardData.name;
+    this._link = cardData.link;
+    this._likes = cardData.likes;
+    this._ownerId = cardData.owner._id;
+    this._id = cardData._id;
+
+    this._titleElement = this._element.querySelector('.elements__title');
+    this._imageElement = this._element.querySelector('.elements__img');
+    this._elementLikeCounter = this._element.querySelector('.elements__like-counter');
+    this._likeBtnElement = this._element.querySelector('.elements__like-btn');
+    this._delBtnElement = this._element.querySelector('.elements__del-btn');
+
+    this._handleDeleteClick = handleDeleteClick;
+    this._handleLikeClick = handleLikeClick;
     this._handleCardClick = handleCardClick;
-    this._toggleLikeButton = this._toggleLikeButton.bind(this);
+
+    this._isOwner = cardData.isOwner;
+    this._isLiked = cardData.isLiked;
   }
 
-  // Метод для получения и клонирования темплейта карточки (разметки)
   _getTemplate() {
     return document.querySelector(this._cardSelector)
       .content
@@ -15,50 +33,62 @@ export default class Card {
       .cloneNode(true);
   }
 
-  // Метод для создания образца карточки
+  delete() {
+    this._element.remove();
+    this._element = null;
+  }
+
+  _renderLike() {
+    this._element
+      .querySelector('.elements__like-btn')
+      .classList
+      .toggle('elements__like-btn_is-active');
+  }
+
+  toggleLike() {
+    this._renderLike();
+
+    if (this._isLiked) {
+      this._elementLikeCounter.textContent = Number(this._elementLikeCounter.textContent) - 1;
+    } else {
+      this._elementLikeCounter.textContent = Number(this._elementLikeCounter.textContent) + 1;
+    }
+
+    this._isLiked = !this._isLiked;
+  }
+
+  _setEventListeners() {
+    this._likeBtnElement.addEventListener('click', () => {
+      this._handleLikeClick(this._id, this._isLiked);
+    });
+
+    this._delBtnElement.addEventListener('click', () => {
+      this._handleDeleteClick();
+    });
+    this._imageElement.addEventListener('click', () => {
+      this._handleCardClick(this._element);
+    });
+  }
+
   createCard() {
-    this._element = this._getTemplate(); // запись разметки в приватное св-во
     this._setEventListeners();
 
-    // Добавление данных
-    const cardImage = this._element.querySelector('.elements__img');
-    const cardTitle = this._element.querySelector('.elements__title');
+    this._titleElement.textContent = this._name;
+    this._imageElement.src = this._link;
+    this._imageElement.alt = `Фотография. ${this._name}`;
 
-    cardImage.src = this._link;
-    cardImage.alt = `Фотография. ${this._name}`;
+    this._elementLikeCounter.textContent = this._likes.length;
 
-    cardTitle.textContent = this._name;
+    if (!this._isOwner) {
+      this._delBtnElement
+        .classList
+        .add('elements__del-btn_is-hidden');
+    }
+
+    if (this._isLiked) {
+      this._renderLike();
+    }
 
     return this._element;
-  }
-
-  // Метод для изменения состояния кнопки лайка
-  _toggleLikeButton() {
-    this._element.querySelector('.elements__like-btn')
-      .classList.toggle('elements__like-btn_is-active');
-  }
-
-  // Метод для удаления карточки
-  _delete() {
-    this._element.remove();
-  }
-
-  // Метод для навешивания слушателей
-  _setEventListeners() {
-    const cardImage = this._element.querySelector('.elements__img');
-    const cardLikeBtn = this._element.querySelector('.elements__like-btn');
-    const cardDeleteBtn = this._element.querySelector('.elements__del-btn');
-
-    cardImage.addEventListener('click', () => {
-      this._handleCardClick(this._name, this._link);
-    });
-
-    cardLikeBtn.addEventListener('click', () => {
-      this._toggleLikeButton();
-    });
-
-    cardDeleteBtn.addEventListener('click', () => {
-      this._delete();
-    });
   }
 }
