@@ -1,9 +1,0 @@
-.footer {
-  display: flex;
-}
-
-@media screen and (max-width: 760px) {
-  .footer {
-    justify-content: center;
-  }
-}
