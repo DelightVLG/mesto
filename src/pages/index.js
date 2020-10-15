@@ -1,5 +1,6 @@
 // TODO: Задокументировать код с помощью JSDoc
 // TODO: После принятия работы поработать над уменьшением количества кода
+// TODO: После критичных исправлений заняться рекомендательными
 // TODO: После разбора курсовой работы (если будет), сделать рефакторинг проблемных частей
 
 import './index.css';
@@ -142,11 +143,10 @@ const addCard = (item) => {
           .deleteCard(item._id)
           .then(() => {
             card.delete();
+            confirmModal.close();
           })
           .catch((err) => {
             console.error(err);
-          }).finally(() => {
-            confirmModal.close();
           });
       });
     },
@@ -193,9 +193,6 @@ Promise.all(
   .then((results) => {
     const getUserInfoResult = results[0];
     const getInitialCardsResult = results[1];
-    // userId = getUserInfoResult._id;
-    // console.log('getInitialCardsResult', getInitialCardsResult);
-    // console.log('getUserInfoResult', getUserInfoResult);
 
     user.setUserInfo(getUserInfoResult);
     cardList.renderItems(getInitialCardsResult.reverse());
@@ -207,13 +204,12 @@ Promise.all(
 // Создание нового экземпляра класса ModalWithForm -> форма доб. карточки
 const modalAddCard = new ModalWithForm(addPlaceModal, {
   handleFormSubmit: (data) => {
-    console.log('cardData:', data);
     modalAddCard.loading(true);
     api
       .saveCard(data)
       .then((response) => {
-        // console.log('response:', response);
         cardList.addItem(addCard(response));
+        validatorCard.disableButton(addPlaceSbmtButton);
         modalAddCard.close();
       })
       .catch((err) => console.error(err))

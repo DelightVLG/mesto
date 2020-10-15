@@ -14,7 +14,7 @@ export const editAvatarBtn = document.querySelector('.profile__photo-container')
 // Add place constants
 export const addPlaceModal = document.querySelector('.modal_type_add-place');
 export const addPlaceOpenBtn = document.querySelector('.profile__add-btn');
-export const addPlaceSbmtButton = document.querySelector('.modal__sbmt-btn');
+export const addPlaceSbmtButton = addPlaceModal.querySelector('.modal__sbmt-btn');
 
 // Preview constants
 export const previewModal = document.querySelector('.modal_type_preview');
