@@ -216,8 +216,6 @@ const modalAddCard = new ModalWithForm(addPlaceModal, {
       .finally(() => {
         modalAddCard.loading(false);
       });
-
-    modalAddCard.close();
   },
 });
 
